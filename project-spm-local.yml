@@ -8,13 +8,12 @@ options:
     iOS: "15.0"
   createIntermediateGroups: true
 
-# PRUEBA LOCAL (simulador): apunta al set Debug del SDK (engine debug + App con
-# kernel_blob), porque en el simulador Flutter necesita frameworks Debug. Es un
-# paquete SwiftPM local generado por el build en ios_sdk/flutter_bridge/Debug.
-# (Para release/device se usa CodeArtifact vía LocalPackages/TradelogSDK.)
+# El SDK se consume como paquete SwiftPM local, descargado por el CLI de Tradelog
+# (`tradelog install` → Tradelog/TradelogSupport). Trae xcframeworks Universal
+# (simulador + device), igual que lo haría un cliente real.
 packages:
   TradelogSupport:
-    path: ../tradelog-support-sdk/ios_sdk
+    path: Tradelog/TradelogSupport
 
 targets:
   TradelogDemo:
