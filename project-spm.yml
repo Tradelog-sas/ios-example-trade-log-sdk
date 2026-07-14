@@ -1,0 +1,37 @@
+# Variante SPM: la dependencia del SDK se resuelve con Swift Package Manager.
+#   xcodegen generate --spec project-spm.yml
+name: TradelogDemo
+
+options:
+  bundleIdPrefix: com.tradelog.demo
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+
+# DISTRIBUCIÓN (CodeArtifact / release): XcodeGen NO puede referenciar un paquete
+# de registry SwiftPM. Por eso este spec NO declara el SDK; tras `make spm`
+# (que corre `ca-login` + genera + abre Xcode) agregas el paquete del registry
+# en Xcode: File > Add Package Dependencies… > escribe `tradelog.TradelogSupport`
+# (registry ya configurado por ca-login) > Add. El código hace `import
+# TradelogSupport` — igual que un cliente real. (Para simulador usa `spm-local`.)
+targets:
+  TradelogDemo:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: Tradelog Demo
+        UILaunchScreen: {}
+        NSMicrophoneUsageDescription: "Usamos el micrófono para que puedas enviar mensajes de voz en el chat de soporte."
+        ITSAppUsesNonExemptEncryption: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tradelog.demo.app
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: NO

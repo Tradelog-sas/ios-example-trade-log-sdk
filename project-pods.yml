@@ -1,0 +1,32 @@
+# Variante CocoaPods: el proyecto NO declara la dependencia; la agrega el Podfile
+# con `pod install` (genera TradelogDemo.xcworkspace).
+#   xcodegen generate --spec project-pods.yml && pod install
+name: TradelogDemo
+
+options:
+  bundleIdPrefix: com.tradelog.demo
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+
+targets:
+  TradelogDemo:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: Tradelog Demo
+        UILaunchScreen: {}
+        NSMicrophoneUsageDescription: "Usamos el micrófono para que puedas enviar mensajes de voz en el chat de soporte."
+        ITSAppUsesNonExemptEncryption: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tradelog.demo.app
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: NO

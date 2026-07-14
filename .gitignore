@@ -1,0 +1,24 @@
+# El .xcodeproj / .xcworkspace se generan (XcodeGen / CocoaPods) — no se versionan.
+*.xcodeproj
+*.xcworkspace
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Build / SPM / DerivedData
+build/
+.build/
+DerivedData/
+
+# Config local + código generado desde .env
+.env
+Sources/Generated/
+
+# Xcode user-specific
+xcuserdata/
+*.xcuserstate
+.DS_Store
+
+LocalPackages/*/.build/
+LocalPackages/*/Package.resolved
